@@ -25,8 +25,8 @@ public class Circulo extends Figura {
    
     @Override
     public void setCoordenadas(int x1, int y1, int x2, int y2) {
-        p.x = Math.min(x1, x2);
-        p.y = Math.min(y1, y2);
+        p.x = x1;
+        p.y = y1;
         raio = (int)Point2D.distance(x1, y1, x2, y2);
     }
     public double Area() {
@@ -35,4 +35,13 @@ public class Circulo extends Figura {
 	public double Perimetro() {
 		return Math.PI * 2 * raio;
 	}
+	public String mostrarInfo() {
+    	return (" Area = " +Area() +" Perimetro = " +Perimetro()+
+    			" Raio = " +raio +" Ponto Inicial = " +p.x +"," + p.y);
+    }
+	public boolean contains(int x, int y) {
+        int distancia = (int)Point2D.distance(p.x, p.y, x, y);
+        return distancia<=raio;
+    }
+
 }

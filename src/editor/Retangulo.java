@@ -37,13 +37,12 @@ public class Retangulo extends Figura {
     public double Perimetro() {
     	return (2 * altura) + (2 * largura);
     }
-    /*public void area() {
-    	area = altura * largura;
+    @Override
+    public String mostrarInfo() {
+    	return (" Area = " +Area() +" Perimetro = " +Perimetro()+
+    			" Ponto Inicial = " +p.x + "," +p.y +" largura = " + largura +" altura = "+altura);
     }
-    
-    public void perimetro() {
-    	perimetro = (largura*2) + (altura*2);
+    public boolean contains(int x, int y) {
+        return p.x <= x && x <= p.x+largura && p.y < y && y < p.y + altura;
     }
-    
-    public void info() {}*/
 }

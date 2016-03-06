@@ -2,12 +2,12 @@ package editor;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.MouseEvent;
+import java.awt.Polygon;
 
 class Triangulo extends Figura {
-	private Ponto p2;
-	private Ponto p3;
-	private int count;
+	protected Ponto p2;
+	protected Ponto p3;
+	protected int count;
 	
 	public Triangulo() {
 		super();
@@ -24,36 +24,12 @@ class Triangulo extends Figura {
 	public void desenha(Graphics g) {
 		if (count == 3) {
 			g.setColor(cor);
-			/*g.drawLine(p.x, p.y, p2.x, p2.y);
-			g.drawLine(p2.x , p2.y, p3.x, p3.y);
-			g.drawLine(p.x, p.y, p3.x, p3.y);*/
 			int xPoints[] = {p.x, p2.x, p3.x};
 			int yPoints[] = {p.y, p2.y, p3.y};
 			g.drawPolygon(xPoints, yPoints, 3);
 		}
-		//System.out.println("rhgerh2");
 	}
 
-	/*public void mouseClicked(MouseEvent mouse){   
-
-		count++;
-
-		if(count==1){
-			p.x=mouse.getX();
-			p.y=mouse.getY();
-			System.out.println("rhgerh3");
-		}
-
-		if(count==2){
-			p2.x = mouse.getX();
-			p2.y = mouse.getY();
-		}
-		if(count==3){
-			p3.x = mouse.getX();
-			p3.y = mouse.getY();
-		}
-		//repaint();
-	}*/
 	public double Area() {
 		// Usa o Teorema de Heron
 		double s = Perimetro() / 2;
@@ -72,6 +48,10 @@ class Triangulo extends Figura {
 				Math.pow(r.y-s.y, 2)
 				);
 	}
+	public String mostrarInfo() {
+    	return (" Area = " +Area() +" Perimetro = " +Perimetro()+
+    			" Ponto 1 = " +p.x + "," +p.y +" Ponto 2 = " +p2.x +"," +p2.y +" Ponto 3 = " +p3.x +"," +p3.y);
+    }
 	public Ponto getP2() {
 		return p2;
 	}
@@ -90,4 +70,21 @@ class Triangulo extends Figura {
 	public void setCount(int count) {
 		this.count = count;
 	}
+	public boolean contains(int x, int y) {
+		int xPoints[] = {p.x, p2.x, p3.x};
+		int yPoints[] = {p.y, p2.y, p3.y};
+		Polygon p = new Polygon(xPoints, yPoints, 3);
+		if (p.contains(x, y)) {
+			return true;
+		}
+		return false;
+	}
+	public void mover (int dx, int dy) {
+    	p.x += dx;
+    	p.y += dy;
+    	p2.x += dx;
+    	p2.y += dy;
+    	p3.x += dx;
+    	p3.y += dy;
+    }
 }

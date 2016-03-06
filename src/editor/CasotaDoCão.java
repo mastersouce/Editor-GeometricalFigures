@@ -1,44 +1,39 @@
+/*
+ * Pentágono (quase) certo aka SnoopyHouse
+ */
 package editor;
-
 import java.awt.*;
-import java.awt.geom.Point2D;
 
 
-public class Pentagono extends Figura {
+public class CasotaDoCão extends Figura{
 	int[] xPoints;
 	int[] yPoints;
-	Ponto p2;
 
-	public Pentagono () {
+	public CasotaDoCão () {
 		super();
-		p2 = new Ponto();
 		xPoints = new int [5];
 		yPoints = new int [5];
-
 	}
-	public Pentagono (int x, int y, int x2, int y2, Color cor){
+	public CasotaDoCão (int x, int y, int x2, int y2, int r, Color cor){
 		super(x, y, cor);
-		p2 = new Ponto(x2, y2);
-		xPoints = new int [5];
-		yPoints = new int [5];
-		setCoordenadas(x, y, x2, y2);
 	}
 
 	@Override
 	public void setCoordenadas(int x1, int y1, int x2, int y2) {
 		p.x = x1;
 		p.y = y1;
-		p2.x = x2;
-		p2.y = y2;
 		
-		double raio = Point2D.distance(x1, y1, x2, y2);
-		double ang = Math.atan2(y2-y1, x2-x1);
-		double inc = 72 * Math.PI / 180;
-		for(int i=0; i<xPoints.length; i++) {
-			xPoints[i] = (int) (raio * Math.cos(ang) + x1);
-			yPoints[i] = (int) (raio * Math.sin(ang) + y1);
-			ang += inc;
-		}
+		xPoints[0] = x1 + (int) (x2-x1);
+		xPoints[1] = x1 + (int) ( ((x2-x1) * Math.cos(108) - ((y2-y1) * Math.sin(108) )));
+		xPoints[2] = x1 + (int) ( ((x2-x1) * Math.cos(216) - ((y2-y1) * Math.sin(216) )));
+		xPoints[3] = x1 + (int) ( ((x2-x1) * Math.cos(324) - ((y2-y1) * Math.sin(324) )));
+		xPoints[4] = x1 + (int) ( ((x2-x1) * Math.cos(432) - ((y2-y1) * Math.sin(432) )));
+
+		yPoints[0] = y1 + (int) (y2-y1);
+		yPoints[1] = y1 + (int) ( ((x2-x1) * Math.sin(108) + ((y2-y1) * Math.cos(108) )));
+		yPoints[2] = y1 + (int) ( ((x2-x1) * Math.sin(216) + ((y2-y1) * Math.cos(216) )));
+		yPoints[3] = y1 + (int) ( ((x2-x1) * Math.sin(324) + ((y2-y1) * Math.cos(324) )));
+		yPoints[4] = y1 + (int) ( ((x2-x1) * Math.sin(432) + ((y2-y1) * Math.cos(432) )));
 	}
 	public void desenha(Graphics g) {
 		g.setColor(cor);
@@ -79,4 +74,5 @@ public class Pentagono extends Figura {
     		yPoints[i] += dy;
     	}
     }
+
 }

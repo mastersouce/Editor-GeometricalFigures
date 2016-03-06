@@ -1,9 +1,6 @@
 package editor;
-
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.MouseInfo;
-import java.awt.Point;
 import java.io.Serializable;
 
 public class Figura implements Serializable {
@@ -13,8 +10,7 @@ public class Figura implements Serializable {
     double perimetro;
     public Figura() {
         p = new Ponto();
-        cor = Color.BLACK;
-        
+        cor = Color.BLACK;  
     }
     
     public Figura(int x, int y, Color c) {
@@ -37,6 +33,15 @@ public class Figura implements Serializable {
     public double Perimetro() {
     	return 0.0;
     }
-    public void mostrarInfo() {}
+    public String mostrarInfo() {
+    	return "N/A";
+    }
+    public boolean contains(int x, int y) {
+    	return false;
+    }
+    public void mover (int dx, int dy) {
+    	p.x += dx;
+    	p.y += dy;
+    }
     
 }

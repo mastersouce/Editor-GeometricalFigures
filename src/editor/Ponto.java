@@ -1,6 +1,8 @@
 package editor;
 
-public class Ponto {
+import java.io.Serializable;
+
+public class Ponto implements Serializable{
     int x, y;
     
     public Ponto() {
